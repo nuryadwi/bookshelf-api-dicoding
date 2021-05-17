@@ -66,9 +66,7 @@ const getAllBooksHandler = (request,h) => {
             })),
          }
       })
-   }
-
-   if(reading !== undefined) {
+   } else if(reading !== undefined) {
       const readStatus = books.filter((book) => book.reading === (reading === '1')).map((book) => ({
          id: book.id,
          name: book.name,
@@ -83,9 +81,7 @@ const getAllBooksHandler = (request,h) => {
       });
       response.code(200);
       return response;
-   }
-
-   if(finished !== undefined) {
+   } else if(finished !== undefined) {
       const finishStatus = books.filter((book) => book.reading === (finished === '1')).map((book) => ({
          id: book.id,
          name: book.name,
@@ -100,19 +96,19 @@ const getAllBooksHandler = (request,h) => {
       });
       response.code(200);
       return response;
-   }
-
-   const booksData = books.map((book) => ({
-      id: book.id,
-      name: book.name,
-      publisher:book.publisher
-   }));
-   if(booksData !== undefined) {
-      return {
-         status: 'success',
-         data: {
-            books:booksData,
-         },
+   }else {
+      const booksData = books.map((book) => ({
+         id: book.id,
+         name: book.name,
+         publisher:book.publisher
+      }));
+      if(booksData !== undefined) {
+         return {
+            status: 'success',
+            data: {
+               books:booksData,
+            },
+         }
       }
    }
 
