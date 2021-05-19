@@ -85,7 +85,7 @@ const getAllBooksHandler = (request, h) => {
     response.code(200);
     return response;
   } else if (finished !== undefined) {
-    const finishStatus = books.filter((book) => book.reading === (finished === '1')).map((book) => ({
+    const finishStatus = books.filter((book) => book.finished === (finished === '1')).map((book) => ({
       id: book.id,
       name: book.name,
       publisher: book.publisher,
